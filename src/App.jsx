@@ -18,23 +18,23 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route
       index
       element = {<Home />}
-      errorElement = {< Error/>}
+      errorElement = {<Error />}
     />
     <Route
       path ="/pokemon"
       element = {<Pokemon />}
       loader={allPokemonLoader}
-      errorElement = {< Error/>}
+      errorElement = {<Error />}
     />
     <Route
       path = "/pokemon/:id"
       element = {<PokemonId />}
-      errorElement = {< Error/>}  
+      errorElement = {<Error />}  
     />
     <Route
       path = "/pokemon/:id/:info"
       element = {<PokemonInfo />}
-      errorElement = {< Error/>}
+      errorElement = {<Error />}
     />
   </Route>
 ));
