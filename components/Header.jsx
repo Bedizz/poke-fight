@@ -1,6 +1,9 @@
 const Header = () => {
   return (
-    <div>Header</div>
+    <div className="header-container">
+      <img src="public\header-removebg-preview.png" alt="" />
+      
+    </div>
   )
 }
 
