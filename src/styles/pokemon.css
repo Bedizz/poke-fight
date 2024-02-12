@@ -19,8 +19,8 @@
 .pokemon-form{
   display: flex;
   padding: 2rem;
+}
 
-  .search-bar{
-    width: 300px;
-  }
+.search-bar{
+  width: 300px;
 }

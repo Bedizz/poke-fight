@@ -6,6 +6,7 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { pokemonType } from "../data/pokemonType";
 import "../styles/pokemon.css";
 
+
 export async function loader() {
   const data = await fetchPokemonData();
   return data;
