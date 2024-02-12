@@ -1,0 +1,17 @@
+.header-container {
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-bottom: 20px;
+    opacity: 0.6;
+}
+.header-container img {
+    max-width: 30%;
+    transition:  transform 0.3s ease-in-out;   
+}
+
+.header-container img:hover {
+    transform: scale(1.1);
+}

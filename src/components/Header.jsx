@@ -1,7 +1,8 @@
+import './header.css'
 const Header = () => {
   return (
     <div className="header-container">
-      <img src="public\header-removebg-preview.png" alt="" />
+      <img src="/header-removebg-preview.png" alt="pokemon" />
       
     </div>
   )

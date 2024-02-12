@@ -1,0 +1,25 @@
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    
+  }
+  
+  .slide {
+    display: none;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .slide.active {
+    display: block;
+    opacity: 1;
+  }
+  
+  .slideshow-container img {
+    margin: 50px;
+    width: 40%;
+    border-radius: 30%;
+    background-color: white;
+    opacity: 0.8;
+  
+  }
