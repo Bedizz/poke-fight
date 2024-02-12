@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Slideshow from '../components/slide'
 import './home.css'
 
@@ -18,7 +19,7 @@ const home = () => {
       </div>
       <div className='right-container'>
         <div className='info-container'>
-          <button>Prepare for Battle!</button>
+          <Link to={"/pokemon"}><button>Prepare for Battle!</button></Link>
           <p>Choose your pokemon and fight against other pokemons to become the best pokemon trainer!</p>
         </div>
       </div>
