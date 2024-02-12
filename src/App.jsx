@@ -4,13 +4,13 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import Layout from "../components/Layout";
-import Error from "../components/Error";
-import Home from "../views/Home";
-import Pokemon from "../views/Pokemon";
-import PokemonInfo from "../views/PokemonInfo";
-import PokemonId from "../views/PokemonId";
-import { loader as allPokemonLoader } from "../views/Pokemon";
+import Layout from "./components/Layout";
+import Error from "./components/Error";
+import Home from "./views/Home";
+import Pokemon from "./views/Pokemon";
+import PokemonInfo from "./views/PokemonInfo";
+import PokemonId from "./views/PokemonId";
+import { loader as allPokemonLoader } from "./views/Pokemon";
 import './App.css'
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -23,7 +23,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route
       path ="/pokemon"
       element = {<Pokemon />}
-      loader={allPokemonLoader}
+      loader = {allPokemonLoader}
       errorElement = {<Error />}
     />
     <Route
