@@ -1,0 +1,26 @@
+.card-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.card-description{
+  display: flex;
+  flex-direction: column;
+  line-height: 3;
+}
+
+.card-type{
+  display: flex;
+  gap: 1rem;
+}
+
+.pokemon-form{
+  display: flex;
+  padding: 2rem;
+}
+
+.search-bar{
+  width: 300px;
+}
