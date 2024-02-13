@@ -15,15 +15,13 @@ export async function loader() {
 }
 
 const Pokemon = () => {
-  const [searchText, setSearchText] = useState("");
+  const [submitText, setSubmitText] = useState("");
   const pokemonData = useLoaderData();
-
 
   return (
     <section className="pokemon-section">
       <Popup 
-        searchText={searchText}
-        setSearchText={setSearchText}/>
+        setSubmitText={setSubmitText}/>
 
       <div className="card-container">
         {pokemonData.map(pokemon => (

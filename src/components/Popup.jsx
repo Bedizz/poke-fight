@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { TextField, Button } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-const Popup = ({ searchText, setSearchText }) => {
+const Popup = ({ setSubmitText }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const handleClick = () => {
     setIsOpen(prevState => ! prevState);
@@ -14,10 +15,9 @@ const Popup = ({ searchText, setSearchText }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault;
+    setSubmitText(searchText);
     setSearchText("");
   }
-
-  console.log(searchText)
 
   return (
     <div className="popup-container">
