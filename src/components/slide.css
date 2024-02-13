@@ -1,13 +1,19 @@
 .slideshow-container {
-    position: relative;
-    max-width: 100%;
-    margin: auto;
+    max-width: 60%;
     
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  
   }
   
   .slide {
     display: none;
     transition: opacity 1s ease-in-out;
+    
+
+    
   }
   
   .slide.active {
@@ -16,9 +22,10 @@
   }
   
   .slideshow-container img {
-    margin: 50px;
-    width: 40%;
-    border-radius: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    border-radius: 40%;
     background-color: white;
     opacity: 0.8;
   

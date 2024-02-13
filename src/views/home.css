@@ -1,13 +1,21 @@
 .body-container {
     display: flex;
     justify-content: space-between;
+    
+    
+    margin: 50px;
+    border-radius: 20%;
+    
 }
 .body-container .left-body-container {
-    width: 40%;
-    padding: 20px;
+    width: 30%;
+    
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-left: 180px;
+    
     
 
 }
@@ -19,7 +27,7 @@
     
 }
 .vs-container {
-    margin-left: 80px;
+
     width: 30%;
 
 }
