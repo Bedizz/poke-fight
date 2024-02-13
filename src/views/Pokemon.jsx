@@ -1,8 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { fetchPokemonData } from "../../api/index.js";
 import CardText from "../components/CardText.jsx";
-import { Badge, TextField } from "@radix-ui/themes";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { Badge } from "@radix-ui/themes";
 import { pokemonType } from "../data/pokemonType";
 import "../styles/pokemon.css";
 
@@ -18,12 +17,6 @@ const Pokemon = () => {
   return (
     <section>
       <form className="pokemon-form">
-        <TextField.Root className="search-bar">
-          <TextField.Slot>
-          <MagnifyingGlassIcon height="16" width="16" />
-          </TextField.Slot>
-          <TextField.Input placeholder="Search by POKEMON name" />
-        </TextField.Root>
       </form>
       <div className="card-container">
         {pokemonData.map(pokemon => (
