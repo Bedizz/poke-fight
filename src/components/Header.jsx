@@ -1,18 +1,23 @@
+
 import { useLocation } from "react-router-dom";
 import Popup from "./Popup";
 import "../styles/header.css";
+import './header.css'
+
 const Header = () => {
+  
   const location = useLocation();
-  console.log(location)
+
   return (
+
     <header>
-      <h1>Poke Fight</h1>
+      <div className="header-container">
+        <img src="/header-removebg-preview.png" alt="pokemon" />
+      </div>
       {location.pathname === "/pokemon"
        ? <Popup />
         :""}
-
     </header>
-
   )
 }
 

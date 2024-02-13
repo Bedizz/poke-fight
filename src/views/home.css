@@ -1,0 +1,59 @@
+.body-container {
+    display: flex;
+    justify-content: space-between;
+}
+.body-container .left-body-container {
+    width: 40%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 180px;
+    
+
+}
+.body-container .right-container {
+    width: 40%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    
+}
+.vs-container {
+    margin-left: 80px;
+    width: 30%;
+
+}
+.body-container .right-container button {
+    background-color: blue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    
+
+    font-size: 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+button:hover {
+    background-color: red;
+    color: white;
+    transform: scale(1.1);
+
+}
+.info-container {
+    display: flex;
+    flex-direction: column;
+    
+
+}
+p {
+    padding: 10px;
+    background-color: red;
+    opacity: 0.5;
+    font-size: 36px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-style: italic;
+}
