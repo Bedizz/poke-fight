@@ -1,13 +1,25 @@
 import { useState } from "react";
-import { TextField } from "@radix-ui/themes";
+import { TextField, Button } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 const Popup = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const handleClick = () => {
     setIsOpen(prevState => ! prevState);
   };
-  console.log(isOpen)
+
+  const handleChange = (event) => {
+    setSearchText(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault;
+    setSearchText("");
+  }
+
+  console.log(searchText)
+
   return (
     <div className="popup-container">
       <nav className="navbar">
@@ -24,13 +36,19 @@ const Popup = () => {
         style={{display: isOpen ? "block" : "none"}}
        >
         <form className="search-form">
-          <h2>Search by Pokemon Type or Name</h2>
-          <TextField.Root>
+          <h2>Search by Pokemon Name or Type</h2>
+
+          <TextField.Root value={searchText} name="sarchName" onChange={handleChange}>
             <TextField.Slot>
             <MagnifyingGlassIcon height="16" width="16" />
             </TextField.Slot>
-            <TextField.Input placeholder="Search the docs…" />
+            <TextField.Input placeholder="Pokemon name or type" />
           </TextField.Root>
+
+          <Button color="indigo" variant="soft">
+            Search Pokemon
+          </Button>
+
         </form>
       </div>
     </div>
