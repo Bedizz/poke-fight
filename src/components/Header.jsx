@@ -1,12 +1,7 @@
-
-import { useLocation } from "react-router-dom";
-import Popup from "./Popup";
 import "../styles/header.css";
 import './header.css'
 
 const Header = () => {
-  
-  const location = useLocation();
 
   return (
 
@@ -14,9 +9,6 @@ const Header = () => {
       <div className="header-container">
         <img src="/header-removebg-preview.png" alt="pokemon" />
       </div>
-      {location.pathname === "/pokemon"
-       ? <Popup />
-        :""}
     </header>
   )
 }

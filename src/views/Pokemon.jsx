@@ -1,8 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import { fetchPokemonData } from "../../api/index.js";
-import CardText from "../components/CardText.jsx";
+import CardText from "../components/CardText";
 import { Badge } from "@radix-ui/themes";
 import { pokemonType } from "../data/pokemonType";
+import Popup from "../components/Popup";
+import { useState } from "react";
+
 import "../styles/pokemon.css";
 
 
@@ -12,12 +15,16 @@ export async function loader() {
 }
 
 const Pokemon = () => {
+  const [searchText, setSearchText] = useState("");
   const pokemonData = useLoaderData();
+
 
   return (
     <section className="pokemon-section">
-      <form className="pokemon-form">
-      </form>
+      <Popup 
+        searchText={searchText}
+        setSearchText={setSearchText}/>
+
       <div className="card-container">
         {pokemonData.map(pokemon => (
           <CardText
