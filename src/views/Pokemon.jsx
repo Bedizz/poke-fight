@@ -15,15 +15,15 @@ const Pokemon = () => {
   const pokemonData = useLoaderData();
 
   return (
-    <section>
+    <section className="pokemon-section">
       <form className="pokemon-form">
       </form>
       <div className="card-container">
         {pokemonData.map(pokemon => (
           <CardText
           key={pokemon.id}
-          img={"https://images.unsplash.com/photo-1596743343697-bd2c1e5a8c81?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
-          alt={`Image of ${pokemon.name.japanese}`}>
+          img={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+          alt={`Image of ${pokemon.name.english}`}>
 
             <span className="card-description">
               <span className="card-type">
@@ -33,7 +33,7 @@ const Pokemon = () => {
                     {typ}
                   </Badge>)}
               </span>
-              {pokemon.name.japanese}
+              {pokemon.name.english}
             </span>
 
           </CardText>
