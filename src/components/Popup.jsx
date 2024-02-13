@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TextField, Button } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-const Popup = () => {
+const Popup = ({ setSubmitText }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
 
@@ -15,10 +15,9 @@ const Popup = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault;
+    setSubmitText(searchText);
     setSearchText("");
   }
-
-  console.log(searchText)
 
   return (
     <div className="popup-container">
@@ -35,7 +34,7 @@ const Popup = () => {
         className="pop-up"
         style={{display: isOpen ? "block" : "none"}}
        >
-        <form className="search-form">
+        <form className="search-form" onSubmit={handleSubmit}>
           <h2>Search by Pokemon Name or Type</h2>
 
           <TextField.Root value={searchText} name="sarchName" onChange={handleChange}>
