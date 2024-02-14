@@ -1,0 +1,36 @@
+.battle-field{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 2rem;
+  align-items: center;
+  background-color: wheat;
+  color: black;
+  padding: 2rem 0;
+}
+
+.pokemon-battle-img{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.battle-health{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.battle-btn{
+  border-radius: 5px;
+  border-color: 2 solid black;
+  background-color: white;
+  padding: .5rem;
+}
+
+.battle-p{
+  font-size: 1.5rem;
+  background-color: inherit;
+  color: black;
+}

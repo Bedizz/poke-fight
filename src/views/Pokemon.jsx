@@ -1,5 +1,5 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { fetchPokemonData } from "../../api/index.js";
+import { fetchPokemonData } from "../api/index.js";
 import CardText from "../components/CardText";
 import { Badge } from "@radix-ui/themes";
 import { pokemonType } from "../data/pokemonType";
