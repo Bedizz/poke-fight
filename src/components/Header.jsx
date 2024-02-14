@@ -12,11 +12,6 @@ const Header = () => {
     </div>
     </div>
 
-    <header>
-      <div className="header-container">
-        <img src="/header-removebg-preview.png" alt="pokemon" />
-      </div>
-    </header>
   )
 }
 
