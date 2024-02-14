@@ -1,15 +1,18 @@
 .body-container {
+    background-color: black;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
+    
+    padding: 50px 0 50px 0;
     
     
-    margin: 50px;
-    border-radius: 20%;
     
 }
 .body-container .left-body-container {
     width: 30%;
-    
+    margin: 0;
+    background: linear-gradient(to bottom right, #3498db 0%, #e74c3c 100%);
+    border-radius: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
