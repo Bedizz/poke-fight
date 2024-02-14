@@ -32,6 +32,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route
       path = "/pokemon/:id"
       element = {<PokemonId />}
+      loader = {allPokemonLoader}
       errorElement = {<Error />}  
     />
     <Route

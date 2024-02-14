@@ -1,11 +1,11 @@
-.header-all-container {
+.footer-all-container {
     background-image: url('https://wallpapers.com/images/hd/pokemon-evolution-8b1ylsvrgjozt6aa.jpg');    
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;  
 }
-.header-container {
+.footer-container {
     background-color: red;
     display: flex;
     align-items: center;
@@ -14,18 +14,4 @@
     
     padding-bottom: 20px;
     opacity: 0.6;
-}
-.header-container a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.header-container img {
-    max-width: 70%;
-    transition:  transform 0.3s ease-in-out;
-      
-}
-
-.header-container img:hover {
-    transform: scale(1.1);
 }
