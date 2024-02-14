@@ -9,14 +9,29 @@ import { useState } from "react";
 import "../styles/pokemon.css";
 
 
-export async function loader() {
-  const data = await fetchPokemonData();
+export function loader() {
+  const data = fetchPokemonData();
   return data;
 }
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 5,
+    behavior: "smooth"
+  });
+}
+
+const partialLoadNum = 50;
+
 const Pokemon = () => {
   const [submitText, setSubmitText] = useState("");
+  const [next, setNext] = useState(partialLoadNum);
+
   const pokemonData = useLoaderData();
+
+  const loadMoreData = () => {
+    setNext(next + partialLoadNum);
+  };
 
   return (
     <section className="pokemon-section">
@@ -24,7 +39,7 @@ const Pokemon = () => {
         setSubmitText={setSubmitText}/>
 
       <div className="card-container">
-        {pokemonData.map(pokemon => (
+        {pokemonData.slice(0, next).map(pokemon => (
           <CardText
           key={pokemon.id}
           img={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
@@ -40,10 +55,16 @@ const Pokemon = () => {
               </span>
               {pokemon.name.english}
             </span>
-
           </CardText>
         ))}
       </div>
+      {next < pokemonData.length ? (
+        <button className="load-btn" onClick={loadMoreData}>
+          Load More
+        </button>) : null}
+      <button className="top-btn" onClick={scrollToTop}>
+        Top
+      </button>
     </section>
   )
 }
