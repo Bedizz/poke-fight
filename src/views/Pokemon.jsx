@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { fetchPokemonData } from "../../api/index.js";
 import CardText from "../components/CardText";
 import { Badge } from "@radix-ui/themes";
@@ -28,6 +28,7 @@ const Pokemon = () => {
   const [dataLength, setDataLength] = useState(partialLoadNum);
 
   const pokemonData = useLoaderData();
+  const navigate = useNavigate();
 
   const filteredPokemonData = submitText ? pokemonData.filter(
     pokemon => pokemon.name.english.toLowerCase() === submitText.toLowerCase() ||
@@ -57,7 +58,8 @@ const Pokemon = () => {
           img={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
           alt={`Image of ${pokemon.name.english}`}>
 
-            <span className="card-description">
+            <span className="card-description" 
+              onClick={() => navigate(`/pokemon/${pokemon.id}`)}>
               <span className="card-type">
                 {pokemon.type.map((typ, index) =>
                   <Badge key = {index}
@@ -70,7 +72,7 @@ const Pokemon = () => {
           </CardText>
         ))}
       </div>
-      {next < pokemonData.length ? (
+      {next < filteredPokemonData.length ? (
         <button className="load-btn" onClick={loadMoreData}>
           Load More
         </button>) : null}
