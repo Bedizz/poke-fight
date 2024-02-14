@@ -59,3 +59,24 @@
   width: 300px;
 }
 
+.load-btn{
+  padding: .5rem 1rem;
+  display: flex;
+  margin: 2rem auto;
+  border-radius: 5px;
+  background-color: #fff;
+  color: black;
+  cursor: pointer;
+}
+
+.top-btn{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #fff;
+  color: black;
+  cursor: pointer;
+}
+
