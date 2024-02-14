@@ -1,36 +1,61 @@
 import { useLoaderData } from "react-router-dom";
 import { fetchPokemonData } from "../../api/index.js";
-import CardText from "../components/CardText.jsx";
-import { Badge, TextField } from "@radix-ui/themes";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import CardText from "../components/CardText";
+import { Badge } from "@radix-ui/themes";
 import { pokemonType } from "../data/pokemonType";
+import Popup from "../components/Popup";
+import { useState, useEffect } from "react";
+
 import "../styles/pokemon.css";
 
-
-export async function loader() {
-  const data = await fetchPokemonData();
+export function loader() {
+  const data = fetchPokemonData();
   return data;
 }
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 5,
+    behavior: "smooth"
+  });
+}
+
+const partialLoadNum = 50;
+
 const Pokemon = () => {
+  const [submitText, setSubmitText] = useState(null);
+  const [next, setNext] = useState(partialLoadNum);
+  const [dataLength, setDataLength] = useState(partialLoadNum);
+
   const pokemonData = useLoaderData();
 
+  const filteredPokemonData = submitText ? pokemonData.filter(
+    pokemon => pokemon.name.english.toLowerCase() === submitText.toLowerCase() ||
+    pokemon.type.some(type => type.toLowerCase() === submitText.toLowerCase())
+  ) : pokemonData;
+
+  useEffect(() => {
+    setDataLength(filteredPokemonData.length);
+  }, [filteredPokemonData])
+
+  const loadMoreData = () => {
+    setNext(next + partialLoadNum);
+  };
+
   return (
-    <section>
-      <form className="pokemon-form">
-        <TextField.Root className="search-bar">
-          <TextField.Slot>
-          <MagnifyingGlassIcon height="16" width="16" />
-          </TextField.Slot>
-          <TextField.Input placeholder="Search by POKEMON name" />
-        </TextField.Root>
-      </form>
+    <section className="pokemon-section">
+      <Popup 
+        setSubmitText={setSubmitText}
+        dataLength={dataLength}
+      />
+
       <div className="card-container">
-        {pokemonData.map(pokemon => (
+        {filteredPokemonData.length === 0 ? <h2 className="no-data">No Pokemon found....</h2>
+        : filteredPokemonData.slice(0, next).map(pokemon => (
           <CardText
           key={pokemon.id}
-          img={"https://images.unsplash.com/photo-1596743343697-bd2c1e5a8c81?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
-          alt={`Image of ${pokemon.name.japanese}`}>
+          img={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+          alt={`Image of ${pokemon.name.english}`}>
 
             <span className="card-description">
               <span className="card-type">
@@ -40,12 +65,18 @@ const Pokemon = () => {
                     {typ}
                   </Badge>)}
               </span>
-              {pokemon.name.japanese}
+              {pokemon.name.english}
             </span>
-
           </CardText>
         ))}
       </div>
+      {next < pokemonData.length ? (
+        <button className="load-btn" onClick={loadMoreData}>
+          Load More
+        </button>) : null}
+      <button className="top-btn" onClick={scrollToTop}>
+        Top
+      </button>
     </section>
   )
 }
