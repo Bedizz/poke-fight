@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TextField, Button } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-const Popup = ({ setSubmitText }) => {
+const Popup = ({ setSubmitText, dataLength }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
 
@@ -14,7 +14,7 @@ const Popup = ({ setSubmitText }) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault;
+    event.preventDefault();
     setSubmitText(searchText);
     setSearchText("");
   }
@@ -34,18 +34,20 @@ const Popup = ({ setSubmitText }) => {
         className="pop-up"
         style={{display: isOpen ? "block" : "none"}}
        >
-        <form className="search-form" onSubmit={handleSubmit}>
-          <h2>Search by Pokemon Name or Type</h2>
-
-          <TextField.Root value={searchText} name="sarchName" onChange={handleChange}>
+        <form className="search-form" onSubmit={(event) => handleSubmit(event)}>
+          <div className="search-title">
+            <h2>Search by Pokemon Name or Type</h2>
+            <button type="button" className="popup-btn" onClick={handleClick}>X</button>
+          </div>
+          <TextField.Root name="sarchName">
             <TextField.Slot>
             <MagnifyingGlassIcon height="16" width="16" />
             </TextField.Slot>
-            <TextField.Input placeholder="Pokemon name or type" />
+            <TextField.Input placeholder="Pokemon name or type" value={searchText} onChange={handleChange}/>
           </TextField.Root>
 
           <Button color="indigo" variant="soft">
-            Search Pokemon
+            {dataLength === 0 ? "Reset" : "Search Pokemon"}
           </Button>
 
         </form>

@@ -4,10 +4,9 @@ import CardText from "../components/CardText";
 import { Badge } from "@radix-ui/themes";
 import { pokemonType } from "../data/pokemonType";
 import Popup from "../components/Popup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "../styles/pokemon.css";
-
 
 export function loader() {
   const data = fetchPokemonData();
@@ -24,10 +23,20 @@ const scrollToTop = () => {
 const partialLoadNum = 50;
 
 const Pokemon = () => {
-  const [submitText, setSubmitText] = useState("");
+  const [submitText, setSubmitText] = useState(null);
   const [next, setNext] = useState(partialLoadNum);
+  const [dataLength, setDataLength] = useState(partialLoadNum);
 
   const pokemonData = useLoaderData();
+
+  const filteredPokemonData = submitText ? pokemonData.filter(
+    pokemon => pokemon.name.english.toLowerCase() === submitText.toLowerCase() ||
+    pokemon.type.some(type => type.toLowerCase() === submitText.toLowerCase())
+  ) : pokemonData;
+
+  useEffect(() => {
+    setDataLength(filteredPokemonData.length);
+  }, [filteredPokemonData])
 
   const loadMoreData = () => {
     setNext(next + partialLoadNum);
@@ -36,10 +45,13 @@ const Pokemon = () => {
   return (
     <section className="pokemon-section">
       <Popup 
-        setSubmitText={setSubmitText}/>
+        setSubmitText={setSubmitText}
+        dataLength={dataLength}
+      />
 
       <div className="card-container">
-        {pokemonData.slice(0, next).map(pokemon => (
+        {filteredPokemonData.length === 0 ? <h2 className="no-data">No Pokemon found....</h2>
+        : filteredPokemonData.slice(0, next).map(pokemon => (
           <CardText
           key={pokemon.id}
           img={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}

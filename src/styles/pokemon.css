@@ -24,6 +24,29 @@
   position: fixed;
 }
 
+.search-title{
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.popup-btn {
+  background-color: tomato !important;
+  padding: .2rem .5rem;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.no-data{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 2rem;
+  height: 100vh
+}
+
 .search-form {
   display: flex;
   flex-direction: column;
