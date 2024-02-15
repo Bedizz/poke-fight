@@ -3,9 +3,11 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { fetchSinglePokemonData } from "../api";
 
+
 export function loader({params}) {
+  
   const selectedPokemon = fetchSinglePokemonData(params.id);
-  const vilan = fetchSinglePokemonData(3);
+  const vilan = fetchSinglePokemonData(params.enemyId);
 
   return Promise.all([selectedPokemon, vilan])
   .then(([playerPokemon, enemyPokemon]) => {
@@ -14,9 +16,20 @@ export function loader({params}) {
 }
 
 const BattleField = () => {
-  const [playerPokemon, setPlayerPokemon] = useState(null);
-  const [enemyPokemon, setEnemyPokemon] = useState(null);
+  const [playerPokemon, setPlayerPokemon] = useState({
+    playerId:null,
+    playerName:null,
+    playerAttack:null,
+    playerHp:null
+  });
+  const [enemyPokemon, setEnemyPokemon] = useState({
+    enemyId:null,
+    enemyName:null,
+    enemyAttack:null,
+    enemyHp:null
+  });
   const [log, setLog] = useState([]);
+  const [isDone, setIsDone] = useState(false);
   const navigate = useNavigate();
   const data = useLoaderData();
 
@@ -49,35 +62,53 @@ const BattleField = () => {
   }, []);
 
   const handleAttack = () => {
-    const playerDamage = Math.floor(Math.random() * playerAttack);
-    const enemyDamage = Math.floor(Math.random() * enemyAttack);
-
-    setPlayerPokemon(prevState => ({ ...prevState,
-       playerHp: Math.max(prevState.playerHp - enemyDamage, 0) }));
-      console.log(playerPokemon)
-
-    setEnemyPokemon(prevState => ({ ...prevState,
-       enemyHp: Math.max(prevState.enemyHp - playerDamage, 0) }));
-
-    setLog((prev) => [
-      ...prev,
-      `${playerName} deals ${playerDamage} damage!`,
-      `${enemyName} deals ${enemyDamage} damage!`,
+    const playerDamage = Math.floor(Math.random() * playerPokemon.playerAttack);
+    const enemyDamage = Math.floor(Math.random() * enemyPokemon.enemyAttack);
+  
+    setPlayerPokemon(prevState => {
+      const newPlayerHp = Math.max(prevState.playerHp - enemyDamage, 0);
+      return {...prevState, playerHp: newPlayerHp};
+    });
+  
+    setEnemyPokemon(prevState => {
+      const newEnemyHp = Math.max(prevState.enemyHp - playerDamage, 0);
+      return {...prevState, enemyHp: newEnemyHp}
+    });
+  
+    setLog((prevLog) => [
+      ...prevLog,
+      `${playerPokemon.playerName} deals ${playerDamage} damage!`,
+      `${enemyPokemon.enemyName} deals ${enemyDamage} damage!`,
     ]);
-
-    if (playerHp - enemyDamage <= 0) {
-      setLog((prevState) => [...prevState, `${enemyName} wins!`]);
-    } else if (enemyHp - playerDamage <= 0) {
-      setLog((prevState) => [...prevState, `${pokemonName} wins!`]);
+  
+    // Use pokemon speed
+    if (playerPokemon.playerHp - enemyDamage <= 0) {
+      setLog((prevState) => [...prevState, `${enemyPokemon.enemyName} wins!`]);
+      setIsDone(true);
+    } else if (enemyPokemon.enemyHp - playerDamage <= 0) {
+      setLog((prevState) => [...prevState, `${playerPokemon.playerName} wins!`]);
+      setIsDone(true);
     }
   };
 
   const handleEscape = () => {
     navigate("/pokemon");
-    setPlayerPokemon(null);
-    setEnemyPokemon(null);
+    setPlayerPokemon({
+      playerId:null,
+      playerName:null,
+      playerAttack:null,
+      playerHp:null
+    });
+    setEnemyPokemon({
+      enemyId:null,
+      enemyName:null,
+      enemyAttack:null,
+      enemyHp:null
+    });
     setLog([]);
   };
+
+  console.log(playerStats)
 
   return (
     <div className="battle-field">
@@ -97,11 +128,16 @@ const BattleField = () => {
           alt={`A picture of ${enemyName}`} />
         </div>
       </div>
-      <button className="battle-btn" onClick={handleAttack}>Attack</button>
+      <button 
+        className="battle-btn" 
+        onClick={handleAttack} 
+        style={{display: isDone ? "none" : "block"}}>
+        Attack
+      </button>
       <button className="battle-btn" onClick={handleEscape}>Escape</button>
       <div className="battle-health">
-        {playerPokemon && <p className="battle-p">{`${playerName}: ${playerHp} HP`}</p>}
-        {enemyPokemon && <p className="battle-p">{`${enemyName}: ${enemyHp} HP`}</p>}
+        {playerPokemon && <p className="battle-p">{`${playerName}: ${playerPokemon.playerHp} HP`}</p>}
+        {enemyPokemon && <p className="battle-p">{`${enemyName}: ${enemyPokemon.enemyHp} HP`}</p>}
       </div>
       <div>
         {log.map((message, index) => (

@@ -13,7 +13,6 @@ import PokemonId from "./views/PokemonId";
 import BattleField from "./views/BattleField";
 import { loader as allPokemonLoader } from "./views/Pokemon";
 import { loader as battleLoader } from "./views/BattleField";
-
 import './App.css'
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -36,10 +35,10 @@ const router = createBrowserRouter(createRoutesFromElements(
       errorElement = {<Error />}  
     />
     <Route
-      path = "/pokemon/:id/battle"
+      path = "/pokemon/:id/battle/:enemyId"
       element = {<BattleField />}
       errorElement = {<Error />}
-      loader={battleLoader}
+      loader = {battleLoader}
     />
   </Route>
 ));
