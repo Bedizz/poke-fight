@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import PokemonInfo from '../views/PokemonInfo'
 import { fetchPokemonData } from "../../api/index.js";
-import { useParams,useLoaderData, Link } from "react-router-dom";
+import { useParams,useLoaderData, Link, useNavigate } from "react-router-dom";
+
 import '../views/PokemonId.css'
 
 export function loader() {
@@ -16,10 +17,16 @@ const PokemonId = () => {
   const [showInfo, setShowInfo] = useState(false);
   const pokemonData = useLoaderData();
   const { id } = useParams();
+  const navigate = useNavigate();
   
 
   const pokemon = pokemonData.find(pokemon => pokemon.id.toString() === id);
   //url her zaman stringdir ve sen burada number olan idyi yakalamaya çalışıyorsun. ancak id string olduğu için stringe çevirmen gerekiyor. o yüzden çevirmediğin noktada hata alıyorsun.
+
+  const handleBack = () => {
+    navigate(-1);
+  }
+
  
   return (
     <>
@@ -37,7 +44,7 @@ const PokemonId = () => {
         </div>
         </>
       )}
-      <div className='button-container'><Link><button>Let's Fight!</button></Link></div>
+      <div className='button-container'><Link><button>Let's Fight!</button></Link><Link><button onClick={handleBack}>Select Another Pokemon</button></Link> </div>
       <div className='information-container'  onClick={() => setShowInfo(!showInfo)}>
             {showInfo ? <PokemonInfo pokemon={pokemon}/> : <h1>Click for more info</h1>}
             
