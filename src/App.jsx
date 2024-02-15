@@ -10,11 +10,13 @@ import Home from "./views/Home";
 import Pokemon from "./views/Pokemon";
 import PokemonInfo from "./views/PokemonInfo";
 import PokemonId from "./views/PokemonId";
+import BattleField from "./views/BattleField";
 import { loader as allPokemonLoader } from "./views/Pokemon";
+import { loader as battleLoader } from "./views/BattleField";
 import './App.css'
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element = {<Layout />}>
+  <Route path="/" element = {<Layout />} errorElement={<Error />}>
     <Route
       index
       element = {<Home />}
@@ -33,9 +35,10 @@ const router = createBrowserRouter(createRoutesFromElements(
       errorElement = {<Error />}  
     />
     <Route
-      path = "/pokemon/:id/:info"
-      element = {<PokemonInfo />}
+      path = "/pokemon/:id/battle/:enemyId"
+      element = {<BattleField />}
       errorElement = {<Error />}
+      loader = {battleLoader}
     />
   </Route>
 ));
