@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import PokemonInfo from '../views/PokemonInfo'
-import { fetchPokemonData } from "../../api/index.js";
+import { fetchPokemonData } from "../api/index.js";
 import { useParams,useLoaderData, Link } from "react-router-dom";
 import '../views/PokemonId.css'
 
@@ -37,7 +37,7 @@ const PokemonId = () => {
         </div>
         </>
       )}
-      <div className='button-container'><Link><button>Let's Fight!</button></Link></div>
+      <div className='button-container'><Link to={`/pokemon/${pokemon.id}/battle`}><button>Let's Fight!</button></Link></div>
       <div className='information-container'  onClick={() => setShowInfo(!showInfo)}>
             {showInfo ? <PokemonInfo pokemon={pokemon}/> : <h1>Click for more info</h1>}
             
