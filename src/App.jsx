@@ -17,7 +17,7 @@ import { loader as battleLoader } from "./views/BattleField";
 import './App.css'
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element = {<Layout />}>
+  <Route path="/" element = {<Layout />} errorElement={<Error />}>
     <Route
       index
       element = {<Home />}
@@ -36,7 +36,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       errorElement = {<Error />}  
     />
     <Route
-      path = "/pokemon/battle"
+      path = "/pokemon/:id/battle"
       element = {<BattleField />}
       errorElement = {<Error />}
       loader={battleLoader}

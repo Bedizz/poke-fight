@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { fetchSinglePokemonData } from "../api";
 
 export function loader({params}) {
-  const selectedPokemon = fetchSinglePokemonData(1);
+  const selectedPokemon = fetchSinglePokemonData(params.id);
   const vilan = fetchSinglePokemonData(3);
 
   return Promise.all([selectedPokemon, vilan])

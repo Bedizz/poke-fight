@@ -14,7 +14,7 @@ const home = () => {
     <div className='body-container'>
       <div className='left-body-container'>
         <Slideshow images={images} />
-        <img src="/Slides/vs.png" alt="" className='vs-container' />
+        <img src="/Slides/vs.png" alt="pokemon slide show" className='vs-container' />
         <Slideshow images={images} />
       </div>
       <div className='right-container'>
