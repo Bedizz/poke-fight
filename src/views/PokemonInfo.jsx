@@ -1,13 +1,13 @@
-
+import "./PokemonInfo.css"
 const PokemonInfo = (pokemon) => {
   console.log(pokemon.pokemon)
   return (
     <div>
       <div>
         </div>
-        <div>
+        <div className="poke-card-info">
           <div className="abilities">
-            <div>Type</div>
+            <h1>Type</h1>
             <hr />
             <div>{pokemon.pokemon.type[0]}</div>
             <hr />

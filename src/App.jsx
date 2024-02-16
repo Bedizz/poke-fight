@@ -6,9 +6,8 @@ import {
 } from "react-router-dom";
 import Layout from "./components/Layout";
 import Error from "./components/Error";
-import Home from "./views/Home";
+import Home from "./views/home";
 import Pokemon from "./views/Pokemon";
-import PokemonInfo from "./views/PokemonInfo";
 import PokemonId from "./views/PokemonId";
 import BattleField from "./views/BattleField";
 import { loader as allPokemonLoader } from "./views/Pokemon";
@@ -20,6 +19,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route
       index
       element = {<Home />}
+      loader = {allPokemonLoader}
       errorElement = {<Error />}
     />
     <Route

@@ -1,3 +1,4 @@
+
 export const fetchPokemonData = async () => {
   try {
     const response = await fetch("https://poke-fight-njw1.onrender.com/pokemon");
